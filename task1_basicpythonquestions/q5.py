@@ -6,5 +6,4 @@ def fibonacci(n):
 
 
 n = int(input("Enter a number: "))
-
-print("Fibonacci number:", fibonacci(n))
+print("fibonacci is: \n", fibonacci(n))
