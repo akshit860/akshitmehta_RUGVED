@@ -1,8 +1,6 @@
 def luhn_check(card_number):
     card_number = card_number.replace(" ", "").replace("-", "")
 
-    if not card_number.isdigit():
-        return False
 
     total = 0
     reverse_digits = card_number[::-1]

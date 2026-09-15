@@ -2,7 +2,7 @@ string = input("Enter a string: ")
 n = int(input("Enter the number of characters in each part: "))
 
 if len(string) % n != 0:
-    print("Error: String cannot be divided into equal parts.")
+    print(" String cannot be divided into equal parts.")
 else:
     parts = []
 
@@ -10,7 +10,7 @@ else:
         parts.append(string[i:i + n])
 
     if len(set(parts)) != 1:
-        print("Error: All parts do not have the same sequence.")
+        print(" do not have the same sequence.")
     else:
         print("Parts:")
         for part in parts:
