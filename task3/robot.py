@@ -38,7 +38,7 @@ class DiscreteRobot:
             self.history.append((self.x, self.y, self.theta))
             
             final_state = f"({self.x:.2f}, {self.y:.2f}, {math.degrees(self.theta):.2f}°)"
-            print(f"Start: {init_state} | Action: {cmd:<12} | End: {final_state}\n")
+            print(f"Start: {init_state} | Action: {cmd} | End: {final_state}\n")
             return True
 
         except ValueError:

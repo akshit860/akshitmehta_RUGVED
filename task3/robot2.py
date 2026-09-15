@@ -21,7 +21,7 @@ class ContinuousUnicycleRobot:
             
         final_state = f"({self.x:.2f}, {self.y:.2f}, {math.degrees(self.theta):.2f}°)"
         cmd_str = f"v={v:.2f}, w={omega:.2f}, t={duration:.2f}s"
-        print(f"Start: {init_state} | Command: {cmd_str:<22} | End: {final_state}")
+        print(f"Start: {init_state} | Command: {cmd_str} | End: {final_state}")
 
     def plot_trajectory(self):
         xs = [h[0] for h in self.history]
