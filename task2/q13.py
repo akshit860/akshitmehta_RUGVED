@@ -18,5 +18,3 @@ maximum = umpire_counts.max()
 
 print("Umpire(s) who umpired the maximum number of times:")
 print(umpire_counts[umpire_counts == maximum])
-
-print("\nMaximum number of matches:", maximum)

@@ -9,4 +9,4 @@ matches = pd.read_csv(csv_path2)
 
 wickets=deliveries[deliveries["player_dismissed"].notna()]
 wickets=wickets[~wickets["dismissal_kind"].isin(["run out","retired hurt","obstructing the field"])]
-print("17.",wickets.groupby("bowler").size().sort_values(ascending=False))
+print(wickets.groupby("bowler").size().sort_values(ascending=False))

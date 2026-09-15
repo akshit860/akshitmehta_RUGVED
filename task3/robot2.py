@@ -67,9 +67,9 @@ if __name__ == "__main__":
 
     robot = ContinuousUnicycleRobot(x=start_x, y=start_y, theta=math.radians(start_deg), dt=dt_val)
 
-    print("\nEnter velocity commands in format: <linear_v> <angular_omega_deg/s> <duration_sec>")
-    print("Example: '1.5 45 2.0' (move at 1.5 m/s, turning 45 deg/s for 2 seconds)")
-    print("Type 'done' to stop entering commands.\n")
+    print("\nEnter velocity commands in format:")
+    print("Example: '1.5 45 2.0')")
+    print("Type 'done' once completed.\n")
 
     while True:
         cmd = input("Enter (v, omega_deg, duration): ").strip()
@@ -87,13 +87,12 @@ if __name__ == "__main__":
             v = float(parts[0])
             omega_deg = float(parts[1])
             duration = float(parts[2])
-            
-            # Convert angular velocity from deg/s to rad/s for calculations
+
             omega_rad = math.radians(omega_deg)
             robot.execute_velocity_command(v, omega_rad, duration)
 
         except ValueError:
-            print("Invalid input values. Please enter numeric values.")
+            print("Invalid input values.")
 
     if len(robot.history) > 1:
         print("\nPlotting continuous trajectory...")

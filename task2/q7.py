@@ -13,9 +13,9 @@ highest_team = run_wins[run_wins["win_by_runs"] == highest]["winner"]
 lowest_team = run_wins[run_wins["win_by_runs"] == lowest]["winner"]
 
 print("Team with highest win by runs:")
-print(highest_team.to_string(index=False))
+print(highest_team)
 print("Runs:", highest)
 
 print("\nTeam with lowest win by runs:")
-print(lowest_team.to_string(index=False))
+print(lowest_team)
 print("Runs:", lowest)
