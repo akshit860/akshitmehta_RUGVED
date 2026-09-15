@@ -1,4 +1,16 @@
+import matplotlib.pyplot as plt
 import pandas as pd
-matches=pd.read_csv("matches.csv")
-winners=matches["winner"].value_counts()
-print(winners.to_string())
+from pathlib import Path
+
+csv_path1 = Path(__file__).with_name("deliveries.csv")
+csv_path2 = Path(__file__).with_name("matches.csv")
+deliveries = pd.read_csv(csv_path1)
+matches = pd.read_csv(csv_path2)
+winner=matches["winner"].value_counts()
+print("21.",winner)
+winner.plot(kind="bar")
+plt.title("Distribution of Winning Teams")
+plt.xlabel("Team")
+plt.ylabel("Wins")
+plt.xticks(rotation=75)
+plt.show()

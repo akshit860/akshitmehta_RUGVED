@@ -1,34 +1,15 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
+from pathlib import Path
 
-matches = pd.read_csv("matches.csv")
+csv_path1 = Path(__file__).with_name("deliveries.csv")
+csv_path2 = Path(__file__).with_name("matches.csv")
+deliveries = pd.read_csv(csv_path1)
+matches = pd.read_csv(csv_path2)
 
-
-teams = []
-for i in range(len(matches)):
-    t1 = matches['team1'][i]
-    t2 = matches['team2'][i]
-    if t1 not in teams:
-        teams.append(t1)
-    if t2 not in teams:
-        teams.append(t2)
-
-
-toss_wins = []
-for team in teams:
-    count = 0
-    for i in range(len(matches)):
-        if matches['toss_winner'][i] == team:
-            count = count + 1
-    toss_wins.append(count)
-
-for i in range(len(teams)):
-    print(teams[i], ":", toss_wins[i])
-
-
-plt.figure(figsize=(9, 7))
-plt.barh(teams, toss_wins)
-plt.title("Toss Wins by Team")
-plt.xlabel("Number of Tosses Won")
-plt.tight_layout()
+pd.crosstab(matches["toss_winner"],matches["toss_decision"]).plot(kind="bar")
+plt.title("Toss Outcomes of All Teams")
+plt.xlabel("Team")
+plt.ylabel("Number of Tosses")
+plt.xticks(rotation=75)
 plt.show()

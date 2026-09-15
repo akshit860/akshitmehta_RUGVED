@@ -1,9 +1,16 @@
+import matplotlib.pyplot as plt
 import pandas as pd
-deliveries=pd.read_csv("deliveries.csv")
+from pathlib import Path
 
-runs_per_batsman= deliveries.groupby("batsman")["batsman_runs"].sum()
-dismissals=deliveries[deliveries["player_dismissed"].notna() & deliveries["dismissal_kind"]!="retired hurt"]
-times_out=dismissals.groupby("player_dismissed").size()
-
-avg_run_batsman=runs_per_batsman / times_out
-print(avg_run_batsman.dropna().sort_values(ascending=False).head(10))
+csv_path1 = Path(__file__).with_name("deliveries.csv")
+csv_path2 = Path(__file__).with_name("matches.csv")
+deliveries = pd.read_csv(csv_path1)
+matches = pd.read_csv(csv_path2)
+outs=deliveries[deliveries["player_dismissed"].notna()].groupby("player_dismissed").size()
+average=deliveries.groupby("batsman")["batsman_runs"].sum().div(outs).dropna().sort_values(ascending=False)
+print("18.",average.head(10))
+pd.crosstab(matches["season"],matches["toss_decision"]).plot(kind="bar")
+plt.title("Toss Decisions Across Seasons")
+plt.xlabel("Season")
+plt.ylabel("Number of Tosses")
+plt.show()

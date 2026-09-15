@@ -1,38 +1,14 @@
-import pandas as pd
 import matplotlib.pyplot as plt
+import pandas as pd
+from pathlib import Path
 
-matches = pd.read_csv("matches.csv")
-
-teams = []
-for i in range(len(matches)):
-    t1 = matches['team1'][i]
-    t2 = matches['team2'][i]
-    if t1 not in teams:
-        teams.append(t1)
-    if t2 not in teams:
-        teams.append(t2)
-
-
-win_rates = []
-for team in teams:
-    total = 0
-    won = 0
-    for i in range(len(matches)):
-        if matches['team1'][i] == team or matches['team2'][i] == team:
-            total = total + 1
-        if matches['winner'][i] == team:
-            won = won + 1
-    rate = (won / total) * 100
-    win_rates.append(rate)
-
-
-for i in range(len(teams)):
-    print(teams[i], ":", round(win_rates[i], 1), "%")
-
-
-plt.figure(figsize=(9, 7))
-plt.barh(teams, win_rates)
-plt.title("Win Rate by Team")
-plt.xlabel("Win Rate (%)")
-plt.tight_layout()
+csv_path1 = Path(__file__).with_name("deliveries.csv")
+csv_path2 = Path(__file__).with_name("matches.csv")
+deliveries = pd.read_csv(csv_path1)
+matches = pd.read_csv(csv_path2)
+pd.crosstab(matches["toss_winner"],matches["toss_decision"]).plot(kind="bar")
+plt.title("Toss Outcomes of All Teams")
+plt.xlabel("Team")
+plt.ylabel("Number of Tosses")
+plt.xticks(rotation=75)
 plt.show()
